@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Marks and Average</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f1f1;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(to right, #B0BEC5, #607D8B); /* Changed from blue to grey gradient */
+        }
+
+        /* Center the content */
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #0072ff;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0072ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .mark-display {
+            background-color: #e3f2fd;
+            border-left: 5px solid #0072ff;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .grade-result {
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .A-plus {
+            background-color: #4CAF50;
+        }
+
+        .B {
+            background-color: #8BC34A;
+        }
+
+        .C {
+            background-color: #FFEB3B;
+            color: black;
+        }
+
+        .D {
+            background-color: #FF9800;
+        }
+
+        .F {
+            background-color: #F44336;
+        }
+
+        .error {
+            background-color: #FF5722;
+        }
+
+        /* Add animation for content */
+        .container {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Course Marks Input and Average Calculation</h1>
+
+    <script>
+        // Step 1: Collecting Course Marks
+        let numOfCourses = prompt("How many courses do you want to enter?");
+        numOfCourses = parseInt(numOfCourses);  // Convert string to number
+        let courseMarks = [];
+
+        for (let i = 0; i < numOfCourses; i++) {
+            let mark = prompt("Enter the mark for course " + (i + 1)); // Ask for the mark
+            mark = parseFloat(mark);  // Convert input to a number
+            courseMarks.push(mark);   // Store the mark in the array
+        }
+
+        // Step 2: Displaying the Marks
+        for (let i = 0; i < courseMarks.length; i++) {
+            document.write("<p class='mark-display'>Course " + (i + 1) + ": " + courseMarks[i] + "</p>");
+        }
+
+        // Step 3: Calculating the Average
+        let total = 0;
+        for (let i = 0; i < courseMarks.length; i++) {
+            total += courseMarks[i];  // Add each course mark to the total
+        }
+
+        let average = total / courseMarks.length;  // Calculate the average
+        average = average.toFixed(2);  // Round average to 2 decimal places
+        document.write("<p class='mark-display'>The average is: " + average + "</p>");
+
+        // Step 4: Grading the Average
+        let gradeClass = '';
+        let gradeMessage = '';
+
+        if (average >= 90 && average <= 100) {
+            gradeClass = 'A-plus';
+            gradeMessage = "Your grade is A+";
+        } else if (average >= 80 && average < 90) {
+            gradeClass = 'B';
+            gradeMessage = "Your grade is B";
+        } else if (average >= 70 && average < 80) {
+            gradeClass = 'C';
+            gradeMessage = "Your grade is C";
+        } else if (average >= 60 && average < 70) {
+            gradeClass = 'D';
+            gradeMessage = "Your grade is D";
+        } else if (average < 60) {
+            gradeClass = 'F';
+            gradeMessage = "Your grade is F";
+        } else {
+            gradeClass = 'error';
+            gradeMessage = "Sorry, all the marks have to be from minimum 0 to maximum 100!";
+        }
+
+        document.write("<div class='grade-result " + gradeClass + "'>");
+        document.write("<p>Your final average is " + average + ". " + gradeMessage + "</p>");
+        document.write("</div>");
+    </script>
+
+</div>
+
+</body>
+</html>
