@@ -1,1 +1,1 @@
-[Live Demo](https://Supandeep-kaur.github.io/Supandeep-kaur.github.io/)
+[Live Demo](https://Supandeep-kaur.github.io/)
